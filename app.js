@@ -9,8 +9,12 @@ const mongoose = require("mongoose");
 const options = require("./doc/options.json");
 
 // const swaggerUi = require("swagger-ui-express");
-const swaggerUi = require("swagger-ui-express");
+// const swaggerUi = require("swagger-ui-express");
+// const swaggerJSDoc = require("swagger-jsdoc");
 // const swaggerDocument = require("./swagger.json");
+
+const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 require("dotenv").config();
 
@@ -26,36 +30,39 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 
-const specs = swaggerJsdoc(options);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+const specs = swaggerJSDoc(options);
+
+app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
 
 const url = process.env.MONGODB_URL;
-mongoose.connect(encodeURI(url), {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
+
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose
+  .connect(encodeURI(url), {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Database connected:", url);
+  });
 
 const db = mongoose.connection;
-db.once("open", async (_) => {
-  console.log("Database connected:", url);
-});
+// db.once("open", async (_) => {
+//   console.log("Database connected:", url);
+// });
 
 db.on("error", (err) => {
   console.error("connection error:", err);
 });
 
-app.use("/", indexRouter);
-app.get("/", (req, res) => {
-  res.send("/public/index.html");
-});
-
 app.use(express.static(path.join(__dirname, "video")));
 
 app.use(function (req, res, next) {
-  next(createError(404, "Data Not Found"));
+  next(createError(404, "No Url Found"));
 });
 
 process.on("uncaughtException", (err) => {

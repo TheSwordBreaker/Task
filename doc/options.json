@@ -2,24 +2,24 @@
   "definition": {
     "openapi": "3.0.0",
     "info": {
-      "title": "LogRocket Express API with Swagger",
+      "title": "Task",
       "version": "0.1.0",
-      "description": "This is a simple CRUD API application made with Express and documented with Swagger",
+      "description": "This is a simple register API application made with Express and documented with Swagger",
       "license": {
         "name": "MIT",
         "url": "https://spdx.org/licenses/MIT.html"
       },
       "contact": {
-        "name": "LogRocket",
-        "url": "https://logrocket.com",
-        "email": "info@email.com"
+        "name": "Kunal Gupta",
+        "url": "https://kunalgupta.ml/",
+        "email": "kunalguptadev007@gmail.com"
       }
     },
     "servers": [
       {
-        "url": "http://localhost:3000/books"
+        "url": "http://localhost:5000/"
       }
     ]
   },
-  "apis": ["./routes/books.js"]
+  "apis": ["./routes/index.js"]
 }

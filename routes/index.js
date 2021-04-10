@@ -6,9 +6,63 @@ const createError = require("http-errors");
 const { send, error, catchasync } = require("../utlis/api");
 const { addUserValidation } = require("../validation");
 
-router.get("/", function (req, res, next) {
-  res.sendFile("index.html");
-});
+/**
+ * @swagger
+ * /user/:
+ *   post:
+ *     summary: Create a user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: The user's name.
+ *                 example: Leanne Graham
+ *               age:
+ *                 type: integer
+ *                 description: The user's age.
+ *                 example: 18
+ *               mobileNumber:
+ *                 type: string
+ *                 description: The user's Moblie number.
+ *                 example: 1234567890
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                       id:
+ *                         type: string
+ *                         description: The user ID.
+ *                         example: 607158629c87a20b60012cca
+ *                       name:
+ *                         type: string
+ *                         description: The user's name.
+ *                         example: Leanne Graham
+ *                       age:
+ *                         type: integer
+ *                         description: The user's age.
+ *                         example: 18
+ *                       mobileNumber:
+ *                         type: string
+ *                         description: The user's Moblie number.
+ *                         example: 1234567890
+ *                       createdAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ */
 
 router.post(
   "/user",
@@ -28,6 +82,67 @@ router.post(
   })
 );
 
+/**
+ * @swagger
+ * /user/:
+ *   get:
+ *     summary: Retrieve a list of users from database.
+ *     description: Retrieve a list of users ffrom database. Can be used to populate a list of fake users when prototyping or testing an API.
+ *
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Display success or failure
+ *                   example: 0
+ *                 msg:
+ *                   type: string
+ *                   description: gives extra info about the responses
+ *                   example: 0
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The user ID.
+ *                         example: 607158629c87a20b60012cca
+ *                       name:
+ *                         type: string
+ *                         description: The user's name.
+ *                         example: Leanne Graham
+ *                       age:
+ *                         type: integer
+ *                         description: The user's age.
+ *                         example: 18
+ *                       mobileNumber:
+ *                         type: string
+ *                         description: The user's Moblie number.
+ *                         example: 1234567890
+ *                       createdAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 router.get(
   "/user",
 
@@ -39,6 +154,73 @@ router.get(
   })
 );
 
+/**
+ * @swagger
+ * /user/id/{id}:
+ *   get:
+ *     summary: Retrieve a list of users from database with id as given.
+ *     description: Retrieve a list of users ffrom database with id as given .
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: String ID of the user to retrieve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Display success or failure
+ *                   example: 0
+ *                 msg:
+ *                   type: string
+ *                   description: gives extra info about the responses
+ *                   example: 0
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The user ID.
+ *                         example: 607158629c87a20b60012cca
+ *                       name:
+ *                         type: string
+ *                         description: The user's name.
+ *                         example: Leanne Graham
+ *                       age:
+ *                         type: integer
+ *                         description: The user's age.
+ *                         example: 18
+ *                       mobileNumber:
+ *                         type: string
+ *                         description: The user's Moblie number.
+ *                         example: 1234567890
+ *                       createdAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record updated.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 router.get(
   "/user/id/:value",
   catchasync(async (req, res, next) => {
@@ -49,6 +231,65 @@ router.get(
   })
 );
 
+/**
+ * @swagger
+ * /user/name/{name}:
+ *   get:
+ *     summary: Retrieve a list of users from database with name as given.
+ *     description: Retrieve a list of users ffrom database with name as given .
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Display success or failure
+ *                   example: 0
+ *                 msg:
+ *                   type: string
+ *                   description: gives extra info about the responses
+ *                   example: 0
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The user ID.
+ *                         example: 607158629c87a20b60012cca
+ *                       name:
+ *                         type: string
+ *                         description: The user's name.
+ *                         example: Leanne Graham
+ *                       age:
+ *                         type: integer
+ *                         description: The user's age.
+ *                         example: 18
+ *                       mobileNumber:
+ *                         type: string
+ *                         description: The user's Moblie number.
+ *                         example: 1234567890
+ *                       createdAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 router.get(
   "/user/name/:value",
   catchasync(async (req, res, next) => {
@@ -58,6 +299,65 @@ router.get(
     return send(res, user);
   })
 );
+/**
+ * @swagger
+ * /user/mobileNumber/{mobileNumber}:
+ *   get:
+ *     summary: Retrieve a list of users from database with mobileNumber as given.
+ *     description: Retrieve a list of users ffrom database with mobileNumber as given .
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Display success or failure
+ *                   example: 0
+ *                 msg:
+ *                   type: string
+ *                   description: gives extra info about the responses
+ *                   example: 0
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The user ID.
+ *                         example: 607158629c87a20b60012cca
+ *                       name:
+ *                         type: string
+ *                         description: The user's name.
+ *                         example: Leanne Graham
+ *                       age:
+ *                         type: integer
+ *                         description: The user's age.
+ *                         example: 18
+ *                       mobileNumber:
+ *                         type: string
+ *                         description: The user's Moblie number.
+ *                         example: 1234567890
+ *                       createdAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 router.get(
   "/user/mobileNumber/:value",
   catchasync(async (req, res, next) => {
@@ -67,6 +367,65 @@ router.get(
     return send(res, user);
   })
 );
+/**
+ * @swagger
+ * /user/age/{age}:
+ *   get:
+ *     summary: Retrieve a list of users from database with age as given.
+ *     description: Retrieve a list of users ffrom database with age as given. .
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Display success or failure
+ *                   example: 0
+ *                 msg:
+ *                   type: string
+ *                   description: gives extra info about the responses
+ *                   example: 0
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The user ID.
+ *                         example: 607158629c87a20b60012cca
+ *                       name:
+ *                         type: string
+ *                         description: The user's name.
+ *                         example: Leanne Graham
+ *                       age:
+ *                         type: integer
+ *                         description: The user's age.
+ *                         example: 18
+ *                       mobileNumber:
+ *                         type: string
+ *                         description: The user's Moblie number.
+ *                         example: 1234567890
+ *                       createdAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date
+ *                         description: The date of the record creation.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 router.get(
   "/user/age/:value",
   catchasync(async (req, res, next) => {
