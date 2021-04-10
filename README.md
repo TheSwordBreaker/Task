@@ -23,4 +23,11 @@ to employ while deploying any API engine
 # Expected:
 1. Data flow diagram for the request.
 2. Block diagram of the deployment.
+    1. heroku
+    ![heroku](/resources/heroku.png)
+
+    2. Aws 
+    ![Aws](/resources/aws.png)
 3. Deployed endpoint with documentation.
+
+    https://my-task-12.herokuapp.com/api-docs
