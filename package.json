@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "start:pm2": "pm2 start app.js",
+    "startpm2": "pm2 start app.js",
     "stop": "pm2 stop app.js"
   },
   "dependencies": {
