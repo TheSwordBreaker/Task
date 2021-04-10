@@ -34,7 +34,8 @@ app.use(cookieParser());
 
 const specs = swaggerJSDoc(options);
 
-app.get("/", swaggerUi.serve, swaggerUi.setup(specs));
+app.use("/user", indexRouter);
+app.use("/", swaggerUi.serve, swaggerUi.setup(specs));
 
 const url = process.env.MONGODB_URL;
 

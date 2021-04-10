@@ -144,7 +144,7 @@ router.post(
  */
 
 router.get(
-  "/user",
+  "",
 
   catchasync(async (req, res, next) => {
     // router.post('/User', validate('User','body') , catchasync( async (req, res, next) =>{
@@ -222,7 +222,7 @@ router.get(
  */
 
 router.get(
-  "/user/id/:value",
+  "/id/:value",
   catchasync(async (req, res, next) => {
     const { value } = req.params;
     const user = await User.find({ id: value });
@@ -291,7 +291,7 @@ router.get(
  *
  */
 router.get(
-  "/user/name/:value",
+  "/name/:value",
   catchasync(async (req, res, next) => {
     const { value } = req.params;
     const user = await User.find({ name: value });
@@ -359,7 +359,7 @@ router.get(
  *
  */
 router.get(
-  "/user/mobileNumber/:value",
+  "/mobileNumber/:value",
   catchasync(async (req, res, next) => {
     const { value } = req.params;
     const user = await User.find({ mobileNumber: value });
@@ -427,7 +427,7 @@ router.get(
  *
  */
 router.get(
-  "/user/age/:value",
+  "/age/:value",
   catchasync(async (req, res, next) => {
     const { value } = req.params;
     console.log("age", value, req.params);
