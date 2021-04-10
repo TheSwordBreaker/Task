@@ -225,9 +225,9 @@ router.get(
   "/id/:value",
   catchasync(async (req, res, next) => {
     const { value } = req.params;
-    const user = await User.find({ id: value });
-    if (user.length == 0) return next(createError(404, "No User Found"));
-    return send(res, user);
+    const user = await User.findById(value);
+    if (!user) return next(createError(404, "No User Found"));
+    return send(res, [user]);
   })
 );
 
